@@ -11,5 +11,5 @@ A library of geometric functions for javascript.
 ```
 ## functions
 
-### Convex Hull Algorithm.
+**Convex Hull Algorithm**
 Calculates the convex hull of a given cloud of points.
