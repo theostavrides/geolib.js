@@ -17,7 +17,10 @@ geolib.convexHull(arr)
 Calculates the convex hull of an array of coordinates.
 Example:
 ```javascript
-let points = [{"x":21,"y":166},{"x":47,"y":530},{"x":44,"y":448},{"x":515,"y":594},
-              {"x":85,"y":413},{"x":502,"y":149},{"x":318,"y":196},{"x":256,"y":307}]
+let points = [{"x":573,"y":345},{"x":306,"y":441},{"x":556,"y":332},{"x":87,"y":113},
+              {"x":131,"y":122},{"x":230,"y":154},{"x":762,"y":233},{"x":728,"y":154}];
+
 geolib.convexHull(points)
+
+// output: [{"x":87,"y":113},{"x":306,"y":441},{"x":573,"y":345},{"x":762,"y":233},{"x":728,"y":154}]
 ```
