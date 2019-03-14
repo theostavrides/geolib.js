@@ -1,7 +1,6 @@
 # geolib.js
-A library of geometric algorithms for javascript.
+A library of geometric functions for javascript.
 
----
 
 ## usage
 1. Place geolib.js in your project directory.
@@ -10,3 +9,6 @@ A library of geometric algorithms for javascript.
 ```html
 <script type="text/javascript" src="geolib.js"></script>
 ```
+## functions
+
+1.  Convex Hull Algorithm:
