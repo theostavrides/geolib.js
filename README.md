@@ -1,5 +1,5 @@
 # geolib.js
-A library of geometric functions for javascript.
+A library of geometric algorithms for javascript.
 
 ---
 
