@@ -12,7 +12,7 @@ A library of geometric functions for javascript.
 ## functions
 
 
-#### Geolib.convexHull()
+#### ```Geolib.convexHull()```
 
 Returns the convex hull of an array of coordinates.
 Example:
