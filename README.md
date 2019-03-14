@@ -12,9 +12,10 @@ A library of geometric functions for javascript.
 ## functions
 
 
-#### ```Geolib.convexHull()```
+#### ```Geolib.convexHull(arr)```
 
-```Geolib.convexHull(arr)``` returns the convex hull of an array of coordinates.
+Returns the convex hull of an array of coordinates.
+Output is sorted clockwise from leftmost point.
 Example:
 ```javascript
 let points = [{"x":573,"y":345},{"x":306,"y":441},{"x":556,"y":332},{"x":87,"y":113},
