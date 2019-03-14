@@ -11,6 +11,6 @@ A library of geometric functions for javascript.
 ```
 ## functions
 
-**1. Convex Hull Algorithm**
+**1. geolib.convexHull(arr)**
 
-   Calculates the convex hull of a given cloud of points.
+   Calculates the convex hull of a set of points **arr**, 
