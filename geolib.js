@@ -21,27 +21,27 @@ let Geolib = (function(){
     return nArr;
   }
 
+  let _rightTurn = function(arr, mode) {
+    let first = arr[0],
+        middle = arr[1],
+        last = arr[2],
+        slope = (last.y - first.y)/(last.x - first.x),
+        b = first.y - (slope * first.x),
+        y = slope * middle.x + b;
+
+    if (first.y === middle.y && middle.y === last.y) {
+      return false;
+    }
+
+    if (mode === 1 ? middle.y >= y : middle.y <= y) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   let convexHull = function (set) {
     set = _removeDuplicates(_lexiSort(set.slice()));
-    function rightTurn(arr, mode) {
-      let first = arr[0],
-          middle = arr[1],
-          last = arr[2],
-          slope = (last.y - first.y)/(last.x - first.x),
-          b = first.y - (slope * first.x),
-          y = slope * middle.x + b;
-
-      if (first.y === middle.y && middle.y === last.y) {
-        return false;
-      }
-
-      if (mode === 1 ? middle.y >= y : middle.y <= y) {
-        return true;
-      } else {
-        return false;
-      }
-    };
-
     let upperH = [],
         lowerH = [];
         rSet = set.slice().reverse();
@@ -50,14 +50,14 @@ let Geolib = (function(){
 
     for (let i = 2; i < set.length; i++) {
       upperH.push(set[i]);
-      while (upperH.length > 2 && !rightTurn(upperH.slice(upperH.length - 3),1)) {
+      while (upperH.length > 2 && !_rightTurn(upperH.slice(upperH.length - 3),1)) {
         upperH.splice(upperH.length - 2, 1);
       }
     }
 
     for (let i = 2; i < rSet.length; i++) {
       lowerH.push(rSet[i]);
-      while (lowerH.length > 2 && !rightTurn(lowerH.slice(lowerH.length - 3),-1)) {
+      while (lowerH.length > 2 && !_rightTurn(lowerH.slice(lowerH.length - 3),-1)) {
         lowerH.splice(lowerH.length - 2, 1);
       }
     }
@@ -73,9 +73,4 @@ let Geolib = (function(){
   }
 
 })();;
-
-
-
-
-
 
