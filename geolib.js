@@ -72,5 +72,5 @@ let Geolib = (function(){
     convexHull: convexHull
   }
 
-})();;
+})();
 
