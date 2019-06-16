@@ -16,7 +16,5 @@
     "url": "https://github.com/theostavrides/geolib/issues"
   },
   "homepage": "https://github.com/theostavrides/geolib#readme",
-  "devDependencies": {
-    "jest": "^24.8.0"
-  }
+  "devDependencies": {}
 }
