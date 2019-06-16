@@ -1,0 +1,22 @@
+{
+  "name": "geolib",
+  "version": "1.0.0",
+  "description": "A library of geometric functions for javascript.",
+  "main": "geolib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theostavrides/geolib.git"
+  },
+  "author": "Theo Stavrides",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theostavrides/geolib/issues"
+  },
+  "homepage": "https://github.com/theostavrides/geolib#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}

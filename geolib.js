@@ -68,6 +68,11 @@ let Geolib = (function(){
     return hull;
   };
 
+  let intersects = function(line1, line2) {
+    line1 = _lexiSort(line1);
+    line2 = _lexiSort(line2);
+  };
+
   return {
     convexHull: convexHull
   }
