@@ -39,6 +39,7 @@ let _rightTurn = function(arr, mode) {
   }
 };
 
+//finds the convex hull of an array of points
 exports.convexHull = function (set) {
   set = _removeDuplicates(_lexiSort(set.slice()));
   let upperH = [],
@@ -67,35 +68,20 @@ exports.convexHull = function (set) {
   return hull;
 };
 
+// checks if two line segments intersect
 exports.intersects = function(line1, line2) {
-  line1 = _lexiSort(line1);
-  line2 = _lexiSort(line2);
-  const line1xMin = line1[0].x;
-  const line1xMax = line1[1].x;
-  const line2xMin = line2[0].x;
-  const line2xMax = line2[1].x;
+  const line1xMax = Math.max(line1[0].x, line1[1].x);
+  const line1xMin = Math.min(line1[0].x, line1[1].x);
+  const line2xMax = Math.max(line2[0].x, line2[1].x);
+  const line2xMin = Math.min(line2[0].x, line2[1].x);
   const xIntersects = line1xMax > line2xMin && line2xMax > line1xMin;
   if (!xIntersects) return false;
 
-  let line1yMin, line1yMax
-  if (line1[0].y >= line1[1].y) {
-    line1yMin = line1[1].y
-    line1yMax = line1[0].y
-  } else {
-    line1yMin = line1[0].y
-    line1yMax = line1[1].y
-  }
-
-  let line2yMin, line2yMax
-  if (line2[0].y >= line2[1].y) {
-    line2yMin = line2[1].y
-    line2yMax = line2[0].y
-  } else {
-    line2yMin = line2[0].y
-    line2yMax = line2[1].y
-  }
+  const line1yMax = Math.max(line1[0].y, line1[1].y);
+  const line1yMin = Math.min(line1[0].y, line1[1].y);
+  const line2yMax = Math.max(line2[0].y, line2[1].y);
+  const line2yMin = Math.min(line2[0].y, line2[1].y);
   const yIntersects = line1yMax > line2yMin && line2yMax > line1yMin;
   if (!yIntersects) return false;
-
   return true
 };
