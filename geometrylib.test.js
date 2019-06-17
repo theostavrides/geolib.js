@@ -1,4 +1,23 @@
-let { intersects, convexHull } = require('./geometrylib');
+let { intersections, intersects, convexHull } = require('./geometrylib');
+
+
+// ----------------- intersections ---------------------
+
+describe('intersections function', () => {
+  it('finds all intersections in a set of line segments', () => {
+    let arr = [
+      [{x:0,y:0}, {x:2,y:4}],
+      [{x:1,y:4}, {x:3,y:2}],
+      [{x:2,y:7}, {x:4,y:5}],
+      [{x:5,y:4}, {x:7,y:8}],
+      [{x:6,y:7}, {x:8,y:4}],
+      [{x:6,y:1}, {x:8,y:3}],
+      [{x:2,y:4}, {x:6,y:2}]
+    ];
+    expect(intersections(arr)).toBe(2);
+
+  })
+})
 
 // ------------------ intersects ------------------
 
@@ -65,4 +84,5 @@ describe('convexHull function', () => {
     expect(convexHull(points)).toStrictEqual(expectedOutput);
   })
 });
+
 

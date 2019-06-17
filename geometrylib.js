@@ -9,6 +9,10 @@ let _lexiSort = function(set){
   });
 };
 
+let _lexiSort2 = function(set){
+
+}
+
 let _removeDuplicates = function(arr) {
   let nArr = [];
   nArr.push(arr[0]);
@@ -85,3 +89,83 @@ exports.intersects = function(line1, line2) {
   if (!yIntersects) return false;
   return true
 };
+
+exports.intersections = function(arr) {
+  let data = _createPlaneSweepDataStructure(arr);
+  // console.log(JSON.stringify(data, null, 1))
+  console.log(data)
+}
+
+
+
+function _createPlaneSweepDataStructure(arr){
+  // Output Example
+  // The key '{"x":7,"y":8}' represents a unique point on the plane
+  // [Array] is a line segment with a point that is the key
+  //    (e.g. one of the segment's points must be {"x":7,"y":8})
+  // example line segment: [{"x":7,"y":8},{x:10,y:10}]
+
+  // [ { '{"x":7,"y":8}': [ [Array] ] },
+  //   { '{"x":2,"y":7}': [ [Array] ] },
+  //   { '{"x":6,"y":7}': [ [Array] ] },
+  //   { '{"x":4,"y":5}': [ [Array] ] },
+  //   { '{"x":1,"y":4}': [ [Array] ] },
+  //   { '{"x":2,"y":4}': [ [Array], [Array] ] },
+  //   { '{"x":5,"y":4}': [ [Array] ] },
+  // ]
+
+  //uniquepoints functions as an index reference for dataOut
+  let uniquePoints = [];
+  let dataOut = [];
+
+  arr.forEach(line => {
+    let p1 = JSON.stringify(line[0]);
+    let p2 = JSON.stringify(line[1]);
+
+    // check if p1 or p2 are in uniquePoints
+    let p1index = uniquePoints.indexOf(p1);
+    let p2index = uniquePoints.indexOf(p2);
+
+    //if not, add the point to uniquepoints
+    //& add the point and corresponding line segment to dataOut
+    if (p1index === -1){
+      uniquePoints.push(p1);
+      let pointData = {};
+      pointData[p1] = [line];
+      dataOut.push(pointData);
+    }
+    if (p2index === -1){
+      uniquePoints.push(p2)
+      let pointData = {};
+      pointData[p2] = [line];
+      dataOut.push(pointData)
+    }
+
+    //if p1 or p2 are in uniquepoints, find the correct point in dataOut
+    //and push the line to the array
+    if (p1index > -1){
+      dataOut[p1index][p1].push(line)
+    }
+    if (p2index > -1){
+      dataOut[p2index][p2].push(line)
+    }
+
+  });
+
+
+  return dataOut.sort(function(a,b){
+    a = JSON.parse(Object.keys(a)[0]);
+    b = JSON.parse(Object.keys(b)[0]);
+    if (a.y === b.y) {
+      return  a.x - b.x;
+    }
+    return b.y - a.y;
+  });
+
+}
+
+
+
+
+
+
