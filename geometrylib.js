@@ -92,12 +92,41 @@ exports.intersects = function(line1, line2) {
 
 exports.intersections = function(arr) {
   let Q = _createEventQueue(arr);
-  let status = [];
+  let status = new Status();
   while (Q.length > 0) {
     let event = Q.shift();
-    let pointstr = Object.keys(event)[0];
+    let pointstr = Object.keys(event)[0]; //the point to be examined
     let pointobj = JSON.parse(pointstr);
-    let lines = event[point]
+    let lines = event[pointstr]; //the segments that have the point as an endpoint
+    console.log(lines)
+    lines.forEach(e => {
+      let p1 = e[0];
+      let p2 = e[1];
+      let top, bottom;
+      p1.y > p2.y ? (top = p1, bottom = p2) : (top = p2, bottom = p1 );
+      if (p1.y === p2.y) {
+        p1.x > p2.x ? (top = p1, bottom = p2) : (top = p1, bottom = p2);
+      }
+
+      if (pointstr === JSON.stringify(top)) {
+      // if the point is  a 'top', insert segment to status
+      status.insert(top);
+      } else {
+      // if point is a 'bottom', delete segment from status
+      status.delete(bottom);
+      }
+    })
+  }
+}
+
+class Status{
+  constructor(){
+    this.data = [];
+  }
+  insert(){
+
+  }
+  delete(){
 
   }
 }
