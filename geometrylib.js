@@ -91,24 +91,26 @@ exports.intersects = function(line1, line2) {
 };
 
 exports.intersections = function(arr) {
-  let data = _createPlaneSweepDataStructure(arr);
-  // console.log(JSON.stringify(data, null, 1))
-  console.log(data)
+  let Q = _createEventQueue(arr);
+  let status = [];
+  while (Q.length > 0) {
+    let event = Q.shift();
+    let pointstr = Object.keys(event)[0];
+    let pointobj = JSON.parse(pointstr);
+    let lines = event[point]
+
+  }
 }
 
 
 
-function _createPlaneSweepDataStructure(arr){
+function _createEventQueue(arr){
   // Output Example
-  // The key '{"x":7,"y":8}' represents a unique point on the plane
-  // [Array] is a line segment with a point that is the key
-  //    (e.g. one of the segment's points must be {"x":7,"y":8})
-  // example line segment: [{"x":7,"y":8},{x:10,y:10}]
+  // '{"x":1,"y":4}' represents a unique point on the plane
+  // [Array] is a line segment with a point {"x":1,"y":4})
+  // Example line segment: [{"x":1,"y":4},{x:10,y:10}]
 
-  // [ { '{"x":7,"y":8}': [ [Array] ] },
-  //   { '{"x":2,"y":7}': [ [Array] ] },
-  //   { '{"x":6,"y":7}': [ [Array] ] },
-  //   { '{"x":4,"y":5}': [ [Array] ] },
+  // [
   //   { '{"x":1,"y":4}': [ [Array] ] },
   //   { '{"x":2,"y":4}': [ [Array], [Array] ] },
   //   { '{"x":5,"y":4}': [ [Array] ] },
@@ -152,7 +154,7 @@ function _createPlaneSweepDataStructure(arr){
 
   });
 
-
+  //sort the output from biggest y to lowest y, if y same, sort by x
   return dataOut.sort(function(a,b){
     a = JSON.parse(Object.keys(a)[0]);
     b = JSON.parse(Object.keys(b)[0]);
